@@ -1,0 +1,135 @@
+id: hiqsdrtrx_source
+label: source
+category: '[hiqsdrtrx]'
+flags: [ throttle ]
+# TODO DKS for what the python flag is used?
+#flags: [ python, throttle ] 
+
+#make: hiqsdr.source(8,${addr}, 48247, 48248, 48251, 48252, 1442, 0, 0,    ${rxfreq}, ${txfreq}, ${samp_rate}, ${ant}, ${presel}, ${att}, ${txLevel}, ${ptt}, ${txRate},  ${clockCorr}, ${rxtaps}, ${txtaps}, ${dpd})
+
+templates:
+  imports: import hiqsdrtrx
+  make: hiqsdrtrx.source(8, ${addr}, 48247, 48248, 48251, 48252, 1442, False, False, ${rxfreq}, ${txfreq}, ${samp_rate}, ${ant}, ${presel}, ${att}, ${txLevel}, ${ptt}, ${txRate}, ${clockCorr}, ${rxtaps}, ${txtaps}, ${dpd})
+  callbacks:
+  - setRXFreq(${rxfreq})
+  - setTXFreq(${txfreq})
+  - setSampleFreq(${samp_rate})
+  - setAnt(${ant})
+  - setPresel(${presel})
+  - setAttentuator(${att})
+  - setTXLevel(${txLevel})
+  - setPtt(${ptt})
+  - setTXRate(${txRate})
+  - setClockCorr(${clockCorr})
+  - setFilter(${txtaps}, 0)
+  - setFilter(${rxtaps}, 1)
+  - setDPD(${dpd})
+
+
+
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as \$keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+
+parameters:
+-   id: addr
+    label: IP
+    dtype: string
+    default: 192.168.239.199
+-   id: rxfreq
+    label: RX-Freq (Hz)
+    dtype: int
+    default: '7000000'
+-   id: txfreq
+    label: TX-Freq (Hz)
+    dtype: int
+    default: '7000000'
+-   id: samp_rate
+    label: Rate
+    dtype: int
+    default: '240000'
+    options: ['8000', '9600', '16000', '19200', '24000', '38400', '48000', '96000', '192000', '240000', '384000', '480000', '960000', '1280000', '1536000', '1920000']
+    option_labels: [8k, 9.6k, 16k, 19.2k, 24k, 38.4k, 48k, 96k, 192k, 240k, 384k, 480k, 960k, 1.28M (16Bit), 1.536 (16Bit), 1.92M (16Bit)]
+-   id: ant
+    label: Antenna
+    dtype: raw
+    default: 'False'
+    options: ['False', 'True']
+    option_labels: ['1', '2']
+-   id: presel
+    label: Preselector
+    dtype: int
+    default: '0'
+-   id: att
+    label: Attentuator
+    dtype: int
+    default: '0'
+    options: ['0', '10', '20', '30']
+    option_labels: [0 dB, -10 dB, -20 dB, -30 dB]
+-   id: txLevel
+    label: TX-Level (0..255)
+    dtype: int
+    default: '255'
+-   id: txRate
+    label: TX Rate
+    dtype: int
+    default: '48000'
+    options: ['48000', '192000', '480000', '8000']
+    option_labels: [48k, 192k, 480k, 8k]
+-   id: ptt
+    label: PTT
+    dtype: raw
+    default: 'False'
+    options: ['False', 'True']
+    option_labels: ['off', 'on']
+-   id: dpd
+    label: DPD
+    dtype: raw
+    default: 'False'
+    options: ['False', 'True']
+    option_labels: ['off', 'on']
+-   id: clockCorr
+    label: ClockCorr
+    dtype: int
+    default: '0'
+-   id: txtaps
+    label: TX Complex Taps
+    dtype: complex_vector
+-   id: rxtaps
+    label: RX Complex Taps
+    dtype: complex_vector
+
+
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+
+#outputs:
+#- label: ...
+#  domain: ...
+#  dtype: ...
+#  vlen: ...
+#  optional: ...
+
+outputs:
+-   domain: stream
+    dtype: complex
+
+
+documentation: |-
+    HiQSDR-RX (https://www.db1cc.de/elektronik/hiqsdr.html)
+    The blocks are based on the work from DL2STG (http://dl2stg.de/stefan/hiqsdr/gnuradio.html)  
+    gr-hiqsdr is a extension to make HiQSDR usable with GNU Radio. After installing you will find two new modules: HiQSDR sink and HiQSDR source.
+    HiQSDR source is the module to make the HiQSDR receiver usable in GNU Radio. All controls are included in this module, also the controls for the transmitter. 
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
