@@ -8,8 +8,14 @@ After installing you will find two new modules: HiQSDR sink and HiQSDR source.
 HiQSDR source is the module to make the HiQSDR receiver usable in GNU Radio. 
 All controls are included in this module, also the controls for the transmitter. 
 
-http://dl2stg.de/stefan/hiqsdr/gnuradio.html
+## More infos
 
-https://www.db1cc.de/elektronik/hiqsdr.html
+* [Protocol description](https://github.com/dg1vs/gr-hiqsdrtrx/blob/main/docs/info/N2ADR_HiQSDR_control_doc_20120111.pdf)
 
-http://james.ahlstrom.name/transceiver/index.html
+## Links 
+* http://dl2stg.de/stefan/hiqsdr/gnuradio.html
+* https://www.db1cc.de/elektronik/hiqsdr.html
+* http://james.ahlstrom.name/transceiver/index.html
+
+![Picture of the HiQSDR from DB1CC](https://github.com/dg1vs/gr-hiqsdrtrx/blob/main/docs/info/900px-HiQSDR_V2.4t_TOP_WEB.JPG.jpg?raw=true)
+The picture is from the old hiqsdr website (Helmut DB1CC) 
