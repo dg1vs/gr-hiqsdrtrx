@@ -18,4 +18,4 @@ All controls are included in this module, also the controls for the transmitter.
 * http://james.ahlstrom.name/transceiver/index.html
 
 ![Picture of the HiQSDR from DB1CC](https://github.com/dg1vs/gr-hiqsdrtrx/blob/main/docs/info/900px-HiQSDR_V2.4t_TOP_WEB.JPG?raw=true)
-The picture is from the old hiqsdr website (Helmut DB1CC) 
+The picture is from the old HiQSDR website (Copyright Helmut DB1CC) 
