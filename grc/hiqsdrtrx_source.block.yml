@@ -38,7 +38,7 @@ parameters:
 -   id: addr
     label: IP
     dtype: string
-    default: 192.168.239.199
+    default: 192.168.2.196
 -   id: rxfreq
     label: RX-Freq (Hz)
     dtype: int
